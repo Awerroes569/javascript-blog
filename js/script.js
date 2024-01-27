@@ -41,11 +41,36 @@ const titleClickHandler = function (event) {
 
 }
 
+function generateTitleLinks() {
+
+    /* [DONE] remove contents of titleList */
+
+    const liLinks = document.querySelectorAll(`.titles li`);
+    for (let liLink of liLinks) {
+        liLink.remove();
+    }
+
+    /* for each article */
+
+    /* get the article id */
+
+    /* find the title element */
+
+    /* get the title from the title element */
+
+    /* create HTML of the link */
+
+    /* insert link into titleList */
+
+}
+
 const links = document.querySelectorAll('.titles a');
 
 for (let link of links) {
     link.addEventListener('click', titleClickHandler);
 }
+
+generateTitleLinks();
 
 
 
