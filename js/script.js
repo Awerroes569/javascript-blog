@@ -94,35 +94,53 @@
   };
   
   const generateTags = () => {
-    /* find all articles */
+    /* [DONE] find all articles */
+    const articles = document.querySelectorAll(optArticleSelector);
 
-    /* START LOOP: for every article: */
+    /* [DONE] START LOOP: for every article: */
+    for (let article of articles) {
+      console.log(article.id);
 
-    /* find tags wrapper */
+      /* [DONE] find tags wrapper */
+      const tagWrapper = article.querySelector(optArticleTagsSelector);
+      console.log(tagWrapper);
 
-    /* make html variable with empty string */
+      /* [DONE] make html variable with empty string */
+      let html = '';
 
-    /* get tags from data-tags attribute */
+      /* get tags from data-tags attribute */
+      const articleTags = article.getAttribute('data-tags');
 
-    /* split tags into array */
+      /* [DONE] split tags into array */
+      let articleTagsArray = [];
+      if (articleTags) {
+        console.log(articleTags);
+        articleTagsArray = articleTags.split(' ');
+      }
 
-    /* START LOOP: for each tag */
+      /* [DONE] START LOOP: for each tag */
+      for (let tag of articleTagsArray) {
+        console.log(tag);
 
-    /* generate HTML of the link */
+        /* [DONE] generate HTML of the link */
+        const linkHTML = `<li><a href="#tag-${tag}">${tag}</a></li>`;
+        console.log(linkHTML);
 
-    /* add generated code to html variable */
+        /* [DONE] add generated code to html variable */
+        html += linkHTML;
 
-    /* END LOOP: for each tag */
+        /* [DONE] END LOOP: for each tag */
+      }
 
-    /* insert HTML of all the links into the tags wrapper */
+      /* [DONE] insert HTML of all the links into the tags wrapper */
+      tagWrapper.innerHTML = html;
 
-    /* END LOOP: for every article: */
+      /* [DONE] END LOOP: for every article: */
+    }
   }; 
     
   generateTitleLinks();
   activateListeners();
   generateTags();
 
-  //const article1 = document.getElementById('article-1');
-  removeTags('article-1');
 }
