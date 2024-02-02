@@ -6,6 +6,7 @@
   const optTitleListSelector = '.titles';
   const optArticleTagsSelector = '.post-tags .list';
   const optArticleAuthorSelector = '.post-author';
+  const optTagsListSelector = '.tags.list';
 
   const titleClickHandler = function (event) {  
     event.preventDefault();
@@ -95,6 +96,9 @@
   };
   
   const generateTags = () => {
+
+    /* [NEW] create a new variable allTags with an empty array */
+    let allTags = [];
     
     /* [DONE] find all articles */
     const articles = document.querySelectorAll(optArticleSelector);
@@ -131,6 +135,12 @@
         /* [DONE] add generated code to html variable */
         html += linkHTML;
 
+        /* [NEW] check if this link is NOT already in allTags */
+        if (allTags.indexOf(linkHTML) == -1) {
+          /* [NEW] add generated code to allTags array */
+          allTags.push(linkHTML);
+        }
+
         /* [DONE] END LOOP: for each tag */
       }
 
@@ -139,6 +149,19 @@
 
       /* [DONE] END LOOP: for every article: */
     }
+
+    /* [NEW] find list of tags in right column */
+    const tagList = document.querySelector(optTagsListSelector);
+
+    /* [DONE] clearing current list of tags */
+    tagList.innerHTML = '';
+
+    /* [DONE] sorting allTags array */
+    allTags.sort();
+
+    /* [NEW] add html from allTags to tagList */
+    tagList.innerHTML = allTags.join(' ');
+
   };
 
   const tagClickHandler = (event) => {
