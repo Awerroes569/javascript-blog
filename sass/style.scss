@@ -129,3 +129,27 @@ body {
         margin-right: 10px;
     }
 }
+
+.tag-size-2 {
+    font-size: 18px;
+}
+
+.tag-size-3 {
+    font-size: 20px;
+}
+
+.tag-size-4 {
+    font-size: 22px;
+}
+
+.tag-size-5 {
+    font-size: 24px;
+}
+
+.list.tags {
+    display:flex;
+    flex-wrap: wrap;
+    li {
+        margin: 0 10px 10px 0;
+    }
+}
