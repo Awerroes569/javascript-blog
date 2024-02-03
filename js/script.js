@@ -9,6 +9,7 @@
   const optTagsListSelector = '.tags.list';
   const optCloudClassCount = 5;
   const optCloudClassPrefix = 'tag-size-';
+  const optAuthorListSelector = '.authors.list';
 
   const titleClickHandler = function (event) {  
     event.preventDefault();
@@ -298,16 +299,26 @@
   };
 
   const destroyAuthors = () => {
+    
+    /* REMOVE AUTHORS FROM ARTICLES */
     const articles = document.querySelectorAll(optArticleSelector);
     for (let article of articles) {
       const authorWrapper = article.querySelector(optArticleAuthorSelector);
       authorWrapper.innerHTML = '';
     }
+
+    /* REMOVE AUTHORS FROM RIGHT COLUMN */
+    const authorList = document.querySelector(optAuthorListSelector);
+    authorList.innerHTML = '';
+
   };
 
   const generateAuthors = () => {
     
     destroyAuthors();
+
+    /* Create object to collect all authors */  
+    const allAuthorLinks = {};
     
     /* [DONE] find all articles */
     const articles = document.querySelectorAll(optArticleSelector);
@@ -321,15 +332,23 @@
       console.log('GEN AUTH wrapper', authorWrapper);
 
       /* [DONE] make html variable with empty string */
-      let html = 'by';
+      let html = 'by ';
 
       /* [DONE] get tags from data-tags attribute */
       const articleAuthor = article.getAttribute('data-author');
       const articleAuthorFormatted = articleAuthor.replace(' ', '-');
 
       /* [DONE] generate HTML of the link */
-      const linkHTML = `<li><a href="#author-${articleAuthorFormatted}">${articleAuthor}</a></li>`;
-      console.log('GEN AUTH linkHTML: ',linkHTML);
+      const linkHTML = `<a href="#author-${articleAuthorFormatted}">${articleAuthor}</a>`;
+      console.log('GEN AUTH linkHTML: ', linkHTML);
+      
+      /* [NEW] check if this link is NOT already in allAuthorLinks */
+      if (!allAuthorLinks[linkHTML]) {
+        /* [NEW] add link to allAuthorLinks object */
+        allAuthorLinks[linkHTML] = 1;
+      } else {
+        allAuthorLinks[linkHTML]++;
+      }
 
       /* [DONE] add generated code to html variable */
       html += linkHTML;
@@ -339,6 +358,15 @@
 
       /* [DONE] END LOOP: for each tag */
     }
+
+    /* [NEW] find list of authors in right column */
+    const authorList = document.querySelector(optAuthorListSelector);
+
+    for (let author in allAuthorLinks) {
+      let howmany = allAuthorLinks[author];
+      authorList.innerHTML += `<li>${author} (${howmany})</li>`;
+    }
+
   };
 
   const addClickListenersToTags = () => {
@@ -360,7 +388,7 @@
   const addClickListenersToAuthors = () => {
 
     /* [DONE] find all links to authors */
-    const authorLinks = document.querySelectorAll(`${optArticleAuthorSelector} a`);
+    const authorLinks = document.querySelectorAll(`${optArticleAuthorSelector} a, ${optAuthorListSelector} a`);
 
     /* START LOOP: for each link */
     for (let authorLink of authorLinks) {
