@@ -53,6 +53,7 @@
         <div class="container">
             <h1 class="logo" data-dupa="apc">my blog</h1>
             <main class="wrapper">
+                <!-- LEFT SIDEBAR -->
                 <aside class="sidebar" aria-label="cos1">
                     <h2 class="section-title">All posts</h2>
                     <!-- <button id="test-button" type="button">Click me</button> -->
@@ -69,6 +70,7 @@
                         <li><a href="#article-10"><span>Article 10</span></a></li>
                     </ul>
                 </aside>
+                <!-- ARTICLE -->
                 <section class="posts">
                     <article
                         class="post active"
@@ -388,8 +390,10 @@
                         </div>
                     </article>
                 </section>
+                <!-- RIGHT SIDEBAR -->
                 <aside class="sidebar" aria-label="cos2">
                     <h2 class="section-title">Tags</h2>
+                    <!-- TAGS LIST -->
                     <ul class="list tags">
                         <li><a href="#">design</a> <span>(6)</span></li>
                         <li><a href="#">code</a> <span>(5)</span></li>
@@ -398,6 +402,7 @@
                         <li><a href="#">news</a> <span>(6)</span></li>
                     </ul>
                     <h2 class="section-title">Authors</h2>
+                    <!-- AUTHORS LIST -->
                     <ul class="list authors">
                         <li>
                             <a href="#">
@@ -428,6 +433,22 @@
 
 
     <!-- <script type="module" src="js/functions.js"></script> -->
+
+    <!-- HANDLEBARS TEMPLATES-->
+
+    <!-- ARTICLE LINK TEMPLATE -->
+
+    <script id="template-article-link" type="text/x-handlebars-template">
+      <li><a href="#{{ id }}"><span>{{ title }}</span></a></li>
+    </script>
+
+    <!-- TAG LINK TEMPLATE -->
+    
+    <script id="template-tag-link" type="text/x-handlebars-template">
+        <li><a href="#tag-{{tag}}">{{tag}}</a></li>
+        </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
 
     <script src="js/script.js"></script>
 
